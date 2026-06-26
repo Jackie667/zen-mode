@@ -84,7 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 6. Footer Clock
+    // 6. Hamburger Menu
+    // =========================================
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('main-nav');
+
+    if (hamburger && mainNav) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('is-open');
+            mainNav.classList.toggle('is-open');
+            document.body.style.overflow = mainNav.classList.contains('is-open') ? 'hidden' : '';
+        });
+
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('is-open');
+                mainNav.classList.remove('is-open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // =========================================
+    // 7. Footer Clock
     // =========================================
     const clockElement = document.getElementById('local-time');
     if (clockElement) {
