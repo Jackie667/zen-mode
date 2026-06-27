@@ -1450,6 +1450,11 @@ body.light-mode #fragments .parallax-bg {
     .fragment-contact h3 { font-size: 1.6rem; }
     .fragment-philosophy { grid-column: span 1; }
     .fragment-card { padding: 28px 22px; }
+
+    /* I Ching card — keep desktop visual on mobile */
+    .fragment-iching { padding: 35px 22px; min-height: 220px; }
+    .iching-symbol { font-size: 2.2rem; }
+    .iching-badge { top: 14px; right: 14px; }
     .koan-text { font-size: 0.95rem; }
 
     /* Avatar */
