@@ -811,6 +811,59 @@ body.light-mode .avatar-light { display: block; mix-blend-mode: multiply; }
     letter-spacing: 1px;
 }
 
+/* I Ching game card */
+.fragment-iching {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(0, 255, 204, 0.12);
+    background: linear-gradient(135deg, rgba(0, 255, 204, 0.03), rgba(10, 10, 12, 0.6));
+}
+
+.iching-badge {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #0a0a0c;
+    background: #00ffcc;
+    padding: 3px 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+
+.iching-symbol {
+    font-size: 2.5rem;
+    color: #00ffcc;
+    opacity: 0.4;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.fragment-iching h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.fragment-iching p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+body.light-mode .fragment-iching {
+    border-color: rgba(0, 122, 255, 0.12);
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.03), rgba(255, 255, 255, 0.6));
+}
+body.light-mode .iching-badge { background: #007aff; color: #fff; }
+body.light-mode .iching-symbol { color: #007aff; }
+body.light-mode .fragment-iching h3 { color: #111; }
+
 /* Koan */
 .fragment-koan {
     display: flex;
