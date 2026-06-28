@@ -129,6 +129,111 @@ body {
 }
 
 /* =========================================
+   BaZi Input
+========================================= */
+.bazi-input-screen, .bazi-results-screen, .supplement-screen {
+    max-width: 700px; width: 100%; text-align: center;
+}
+.bazi-input-screen h2, .bazi-results-screen h2, .supplement-screen h2 {
+    font-size: 2rem; color: #fff; margin-bottom: 10px;
+}
+
+.bazi-form {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin: 30px 0; text-align: left;
+}
+.bazi-field label {
+    display: block; font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; color: #888; margin-bottom: 6px;
+}
+.bazi-field input, .bazi-field select {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 14px 16px; font-family: inherit; font-size: 0.9rem;
+    color: #e0e0e0; outline: none;
+}
+.bazi-field input:focus, .bazi-field select:focus { border-color: #00ffcc; }
+.bazi-field select { cursor: pointer; }
+.bazi-field select option { background: #15151a; color: #e0e0e0; }
+
+/* BaZi Results */
+.pillars-display {
+    display: flex; justify-content: center; gap: 12px;
+    margin: 30px 0; flex-wrap: wrap;
+}
+.pillar {
+    background: rgba(21,21,26,0.6); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 20px 18px; text-align: center;
+    min-width: 80px;
+}
+.pillar-label { display: block; font-size: 0.6rem; letter-spacing: 2px; color: #666; margin-bottom: 10px; text-transform: uppercase; }
+.pillar-stem { display: block; font-size: 1.8rem; color: #00ffcc; font-weight: 700; }
+.pillar-branch { display: block; font-size: 1.8rem; color: #fff; font-weight: 700; margin-bottom: 8px; }
+.pillar-el { display: block; font-size: 0.7rem; color: #888; letter-spacing: 1px; }
+
+.subsection-title {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    color: #555; margin: 30px 0 15px; text-align: left;
+}
+
+/* Element bars */
+.el-bars { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+.el-bar-row { display: flex; align-items: center; gap: 10px; }
+.el-label { font-size: 0.8rem; color: #bbb; width: 100px; text-align: left; }
+.el-track { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.el-fill { height: 100%; background: #00ffcc; border-radius: 3px; transition: width 0.5s ease; }
+.el-val { font-size: 0.75rem; color: #888; width: 20px; text-align: right; }
+.missing-note { font-size: 0.85rem; color: #ff6b6b; margin-bottom: 10px; text-align: left; }
+
+/* Score cards */
+.score-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; text-align: left; }
+.score-card {
+    background: rgba(21,21,26,0.4); border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 14px; padding: 18px 20px;
+}
+.score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.score-label { font-size: 0.85rem; color: #ccc; font-weight: 600; }
+.score-number { font-size: 1.4rem; font-weight: 700; }
+.score-bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; margin-bottom: 10px; }
+.score-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+.score-note { font-size: 0.8rem; color: #999; line-height: 1.5; }
+
+.bazi-actions { margin-top: 30px; }
+
+/* Supplement screen */
+.sup-grid { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; text-align: left; }
+.sup-card {
+    background: rgba(21,21,26,0.5); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 20px; cursor: pointer;
+    transition: all 0.3s ease; position: relative;
+}
+.sup-card:hover { border-color: rgba(0,255,204,0.2); }
+.sup-card.selected { border-color: #00ffcc; background: rgba(0,255,204,0.04); }
+.sup-card.recommended { border-color: rgba(255,170,51,0.2); }
+
+.sup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.sup-label { font-size: 0.9rem; color: #fff; font-weight: 600; }
+.sup-score { font-size: 1.2rem; font-weight: 700; color: #888; }
+.sup-desc { font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
+.sup-warning { font-size: 0.75rem; color: #ff6b6b; opacity: 0.7; font-style: italic; }
+
+.sup-badge {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #000; background: #00ffcc; padding: 3px 10px; border-radius: 50px;
+}
+.sup-badge.rec { background: #ffaa33; }
+
+.sup-hint { font-size: 0.8rem; color: #666; margin-top: 10px; font-style: italic; }
+
+.preview-block {
+    background: rgba(21,21,26,0.4); border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 16px; padding: 20px; margin: 20px 0; text-align: left;
+}
+
+.intro-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* =========================================
    Gameplay: HUD + Event Card + Choices
 ========================================= */
 .game-screen { max-width: 500px; width: 100%; text-align: center; }
@@ -327,4 +432,9 @@ body {
     .choice-buttons { flex-direction: column; }
     .endgame-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; max-width: 300px; }
+    .bazi-form { grid-template-columns: 1fr; }
+    .pillars-display { gap: 8px; }
+    .pillar { min-width: 70px; padding: 15px 12px; }
+    .pillar-stem, .pillar-branch { font-size: 1.4rem; }
+    .intro-actions { flex-direction: column; align-items: center; }
 }
