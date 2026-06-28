@@ -1,7 +1,3 @@
-// =========================================
-// Game Engine
-// =========================================
-
 const TOTAL_TURNS = 20;
 const STRESS_MAX = 100;
 
@@ -17,13 +13,15 @@ const state = {
     originalStats: null,
     originalStress: 0,
     gameOver: false,
-    gameOverReason: ''
+    gameOverReason: '',
+    flags: new Set(),
+    currentEra: -1,
+    showingEraIntro: false,
+    showingReflection: false
 };
 
-// Clamp value between 0 and 100
 function clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
 
-// Shuffle array
 function shuffle(arr) {
     const a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
@@ -33,16 +31,25 @@ function shuffle(arr) {
     return a;
 }
 
+function getEraForTurn(turn) {
+    return ERAS.findIndex(e => turn >= e.turns[0] && turn <= e.turns[1]);
+}
+
+function getEventText(event) {
+    if (event.textFn) return event.textFn(state);
+    if (event.text._default) return event.text._default;
+    return event.text[state.idealLife.id] || event.text._default || '';
+}
+
 // =========================================
 // Game Flow
 // =========================================
-
 function selectProfile(profileId) {
     state.profile = PROFILES.find(p => p.id === profileId);
     state.originalStats = { ...state.profile.stats };
     state.originalStress = state.profile.stress;
     state.phase = 'rewrite';
-    renderRewrite();
+    render();
 }
 
 function selectIdealLife(idealId) {
@@ -51,21 +58,29 @@ function selectIdealLife(idealId) {
     state.stress = state.idealLife.stress;
     state.turn = 0;
     state.history = [];
+    state.flags = new Set();
     state.gameOver = false;
+    state.currentEra = -1;
 
-    // Record initial state
     recordHistory();
 
-    // Build shuffled event deck
-    state.eventDeck = shuffle(EVENTS);
+    // Build event deck: 5 events per era, shuffled within era
+    state.eventDeck = [];
+    for (let era = 0; era < 4; era++) {
+        const eraEvents = EVENTS.filter(e => e.era === era);
+        state.eventDeck.push(...shuffle(eraEvents));
+    }
 
     state.phase = 'playing';
-    renderGame();
+    render();
 }
 
 function makeChoice(side) {
     const event = state.eventDeck[state.turn];
     const choice = side === 'left' ? event.left : event.right;
+
+    // Set flags for consequence tracking
+    if (choice.flag) state.flags.add(choice.flag);
 
     // Apply effects
     Object.keys(choice.effect).forEach(key => {
@@ -76,94 +91,130 @@ function makeChoice(side) {
         }
     });
 
-    // Apply maintenance costs from ideal life
+    // Maintenance costs
     const mc = state.idealLife.maintenanceCost;
     Object.keys(mc).forEach(key => {
         state.stats[key] = clamp(state.stats[key] + mc[key]);
     });
 
-    // Stress from extremes: any stat above 80 or below 15 adds stress
+    // Stress from extremes
     let extremeStress = 0;
     Object.values(state.stats).forEach(v => {
         if (v > 80) extremeStress += (v - 80) * 0.3;
         if (v < 15) extremeStress += (15 - v) * 0.5;
     });
     state.stress = clamp(state.stress + extremeStress);
-
-    // Natural stress growth (accelerates over time)
     state.stress = clamp(state.stress + 1 + state.turn * 0.3);
 
     state.turn++;
     recordHistory();
 
-    // Check game over
+    // Show reflection
+    state.showingReflection = true;
+    state.lastReflection = choice.reflection || '';
+    render();
+
+    setTimeout(() => {
+        state.showingReflection = false;
+        checkGameState();
+    }, 3500);
+}
+
+function checkGameState() {
     if (state.stress >= STRESS_MAX) {
         state.gameOver = true;
-        state.gameOverReason = 'Burnout. The weight became unbearable.';
+        state.gameOverReason = 'Burnout. The weight finally broke you — not all at once, but in the way water breaks stone. Slowly, then completely.';
     } else if (state.stats.energy <= 0) {
         state.gameOver = true;
-        state.gameOverReason = 'Collapse. Your body gave out before your ambition did.';
+        state.gameOverReason = 'Collapse. Your body kept the score your mind refused to read. It shut down to save you from yourself.';
     } else if (state.stats.relationships <= 0) {
         state.gameOver = true;
-        state.gameOverReason = 'Alone. Everyone who mattered has left.';
+        state.gameOverReason = 'Alone. The last person left quietly. No fight. No goodbye. Just an empty room and the echo of everything you traded for this.';
     } else if (state.stats.money <= 0 && state.stats.fulfillment <= 10) {
         state.gameOver = true;
-        state.gameOverReason = 'Broke and empty. The dream became a trap.';
+        state.gameOverReason = 'Bankrupt — in every sense. The dream spent everything you had and left you with the receipt.';
     } else if (state.turn >= TOTAL_TURNS) {
         state.gameOver = true;
-        state.gameOverReason = 'Time\'s up. The years passed faster than you expected.';
+        state.gameOverReason = 'Time\'s up. Twenty years passed in what felt like twenty minutes. The meter is running, but the ride is over.';
     }
 
     if (state.gameOver) {
         state.phase = 'endgame';
-        renderEndgame();
-    } else {
-        renderGame();
     }
+    render();
 }
 
 function recordHistory() {
-    state.history.push({
-        turn: state.turn,
-        stats: { ...state.stats },
-        stress: state.stress
-    });
+    state.history.push({ turn: state.turn, stats: { ...state.stats }, stress: state.stress });
 }
 
-// Simulate the "ordinary path" for comparison
 function simulateOrdinaryPath() {
     const sim = [];
     const s = { ...state.originalStats };
     let stress = state.originalStress;
-    const turns = state.history.length;
 
-    for (let i = 0; i <= turns; i++) {
+    for (let i = 0; i < state.history.length; i++) {
         sim.push({ turn: i, stats: { ...s }, stress });
-
-        // Ordinary life: slow steady growth, low stress
         s.money = clamp(s.money + 2.5);
         s.relationships = clamp(s.relationships + 1.5);
-        s.energy = clamp(s.energy - 1); // natural aging
+        s.energy = clamp(s.energy - 1);
         s.fulfillment = clamp(s.fulfillment + 2);
         stress = clamp(stress + 0.3);
-
-        // Ordinary life auto-balances: if any stat is low, natural correction
         Object.keys(s).forEach(k => {
             if (s[k] < 30) s[k] = clamp(s[k] + 3);
             if (s[k] > 80) s[k] = clamp(s[k] - 1);
         });
     }
-
     return sim;
 }
 
-// =========================================
-// Rendering
-// =========================================
+function restartGame() {
+    Object.assign(state, {
+        phase: 'intro', profile: null, idealLife: null, turn: 0,
+        stats: { money: 0, relationships: 0, energy: 0, fulfillment: 0 },
+        stress: 0, history: [], gameOver: false, flags: new Set(),
+        currentEra: -1, showingReflection: false
+    });
+    document.body.style.filter = '';
+    render();
+}
 
-function renderSetup() {
-    const container = document.getElementById('game-content');
-    container.innerHTML = `
+// =========================================
+// Render
+// =========================================
+function render() {
+    const c = document.getElementById('game-content');
+
+    if (state.phase === 'intro') return renderIntro(c);
+    if (state.phase === 'setup') return renderSetup(c);
+    if (state.phase === 'rewrite') return renderRewrite(c);
+    if (state.phase === 'endgame') return renderEndgame(c);
+
+    // Playing phase: check era transitions
+    const era = getEraForTurn(state.turn);
+    if (era !== state.currentEra && !state.showingReflection && !state.gameOver) {
+        state.currentEra = era;
+        return renderEraIntro(c, era);
+    }
+
+    if (state.showingReflection) return renderReflection(c);
+    renderGame(c);
+}
+
+function renderIntro(c) {
+    c.innerHTML = `
+        <div class="intro-screen">
+            <p class="intro-epigraph">"不要美化另一条路。"</p>
+            <h1 class="intro-title">The Life<br>Script</h1>
+            <p class="intro-sub">An interactive experience about the life you have<br>and the life you think you want.</p>
+            <p class="intro-desc">You'll start with an ordinary life. Then you'll rewrite it into a dream.<br>Then you'll discover why the dream breaks — and why the ordinary was enough all along.</p>
+            <button class="btn btn-primary" onclick="state.phase='setup'; render();">Begin</button>
+            <p class="intro-credit">By <a href="../">JSU</a> · Zen Mode</p>
+        </div>`;
+}
+
+function renderSetup(c) {
+    c.innerHTML = `
         <div class="setup-screen">
             <p class="phase-label">Chapter 1</p>
             <h2>Your Current Script</h2>
@@ -171,94 +222,90 @@ function renderSetup() {
             <div class="profile-grid">
                 ${PROFILES.map(p => `
                     <div class="profile-card" onclick="selectProfile('${p.id}')">
-                        <h3>${p.name}</h3>
-                        <span class="profile-age">Age ${p.age}</span>
+                        <h3>${p.name}</h3><span class="profile-age">Age ${p.age}</span>
                         <p>${p.desc}</p>
                         <div class="mini-bars">
-                            <div class="mini-bar"><span class="mini-icon">💰</span><div class="mini-fill" style="width:${p.stats.money}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">❤️</span><div class="mini-fill" style="width:${p.stats.relationships}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">🧠</span><div class="mini-fill" style="width:${p.stats.energy}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">🌟</span><div class="mini-fill" style="width:${p.stats.fulfillment}%"></div></div>
+                            ${renderMiniBars(p.stats)}
                         </div>
-                    </div>
-                `).join('')}
+                    </div>`).join('')}
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
-function renderRewrite() {
-    const p = state.profile;
-    const container = document.getElementById('game-content');
-    container.innerHTML = `
+function renderRewrite(c) {
+    c.innerHTML = `
         <div class="rewrite-screen">
             <p class="phase-label">Chapter 2</p>
             <h2>Rewrite Your Script</h2>
-            <p class="phase-desc">You chose <strong>${p.name}</strong>. Now — if you could be anyone, who would you become?</p>
+            <p class="phase-desc">You chose <strong>${state.profile.name}</strong>. Now — if you could be anyone, who would you become?</p>
             <div class="ideal-grid">
                 ${IDEAL_LIVES.map(l => `
                     <div class="ideal-card" onclick="selectIdealLife('${l.id}')">
                         <span class="ideal-icon">${l.icon}</span>
-                        <h3>${l.name}</h3>
-                        <p>${l.desc}</p>
-                        <div class="mini-bars">
-                            <div class="mini-bar"><span class="mini-icon">💰</span><div class="mini-fill" style="width:${l.stats.money}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">❤️</span><div class="mini-fill" style="width:${l.stats.relationships}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">🧠</span><div class="mini-fill" style="width:${l.stats.energy}%"></div></div>
-                            <div class="mini-bar"><span class="mini-icon">🌟</span><div class="mini-fill" style="width:${l.stats.fulfillment}%"></div></div>
-                        </div>
-                        <div class="debuff-list">
-                            ${l.debuffs.map(d => `<span class="debuff">⚠️ ${d}</span>`).join('')}
-                        </div>
-                    </div>
-                `).join('')}
+                        <h3>${l.name}</h3><p>${l.desc}</p>
+                        <div class="mini-bars">${renderMiniBars(l.stats)}</div>
+                        <div class="debuff-list">${l.debuffs.map(d => `<span class="debuff">⚠️ ${d}</span>`).join('')}</div>
+                    </div>`).join('')}
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
-function renderGame() {
-    const event = state.eventDeck[state.turn];
-    const s = state.stats;
-    const stressPercent = state.stress;
-    const yearLabel = `Year ${state.turn + 1} of ${TOTAL_TURNS}`;
+function renderEraIntro(c, eraIndex) {
+    const era = ERAS[eraIndex];
+    c.innerHTML = `
+        <div class="era-intro" onclick="render()">
+            <p class="era-chapter">Chapter ${eraIndex + 3}</p>
+            <h2 class="era-name">${era.name}</h2>
+            <p class="era-text">${era.intro}</p>
+            <p class="era-narrator">${era.narrator}</p>
+            <p class="era-continue">Tap to continue</p>
+        </div>`;
+}
 
-    const container = document.getElementById('game-content');
-    container.innerHTML = `
+function renderReflection(c) {
+    c.innerHTML = `
+        <div class="reflection-screen">
+            <p class="reflection-text">${state.lastReflection}</p>
+        </div>`;
+}
+
+function renderGame(c) {
+    const event = state.eventDeck[state.turn];
+    if (!event) { state.gameOver = true; state.gameOverReason = "The story ends here."; state.phase = 'endgame'; return renderEndgame(c); }
+
+    const s = state.stats;
+    const era = ERAS[state.currentEra] || ERAS[0];
+    const eventText = getEventText(event);
+
+    // Stress visual
+    const sp = state.stress;
+    document.body.style.filter = sp > 50
+        ? `saturate(${1 - (sp - 50) * 0.015}) brightness(${1 - (sp - 50) * 0.004})`
+        : '';
+
+    c.innerHTML = `
         <div class="game-screen">
             <div class="game-hud">
+                <div class="hud-top">
+                    <span class="era-badge">${era.name}</span>
+                    <span class="turn-label">Year ${state.turn + 1} of ${TOTAL_TURNS}</span>
+                </div>
                 <div class="stat-bars">
-                    <div class="stat-bar-item">
-                        <span class="stat-icon">💰</span>
-                        <div class="stat-track"><div class="stat-fill" style="width:${s.money}%"></div></div>
-                        <span class="stat-val">${s.money}</span>
-                    </div>
-                    <div class="stat-bar-item">
-                        <span class="stat-icon">❤️</span>
-                        <div class="stat-track"><div class="stat-fill" style="width:${s.relationships}%"></div></div>
-                        <span class="stat-val">${s.relationships}</span>
-                    </div>
-                    <div class="stat-bar-item">
-                        <span class="stat-icon">🧠</span>
-                        <div class="stat-track"><div class="stat-fill" style="width:${s.energy}%"></div></div>
-                        <span class="stat-val">${s.energy}</span>
-                    </div>
-                    <div class="stat-bar-item">
-                        <span class="stat-icon">🌟</span>
-                        <div class="stat-track"><div class="stat-fill" style="width:${s.fulfillment}%"></div></div>
-                        <span class="stat-val">${s.fulfillment}</span>
-                    </div>
+                    ${renderStatBar('💰', 'Money', s.money)}
+                    ${renderStatBar('❤️', 'Bonds', s.relationships)}
+                    ${renderStatBar('🧠', 'Energy', s.energy)}
+                    ${renderStatBar('🌟', 'Purpose', s.fulfillment)}
                 </div>
                 <div class="stress-bar">
                     <span>🌪️ Stress</span>
-                    <div class="stress-track"><div class="stress-fill" style="width:${stressPercent}%"></div></div>
+                    <div class="stress-track"><div class="stress-fill" style="width:${sp}%"></div></div>
+                    <span class="stat-val">${sp}</span>
                 </div>
             </div>
 
             <div class="event-card">
-                <p class="event-year">${yearLabel}</p>
                 <h3 class="event-title">${event.title}</h3>
-                <p class="event-text">${event.text}</p>
+                <p class="event-text">${eventText}</p>
             </div>
 
             <div class="choice-buttons">
@@ -269,108 +316,80 @@ function renderGame() {
                     <span class="choice-label">${event.right.label}</span>
                 </button>
             </div>
-        </div>
-    `;
-
-    // Visual stress effects
-    document.body.style.filter = stressPercent > 60
-        ? `saturate(${1 - (stressPercent - 60) * 0.015}) brightness(${1 - (stressPercent - 60) * 0.003})`
-        : '';
+        </div>`;
 }
 
-function renderEndgame() {
+function renderEndgame(c) {
     document.body.style.filter = '';
     const ordinaryPath = simulateOrdinaryPath();
-    const playerFinal = state.history[state.history.length - 1];
-    const ordinaryFinal = ordinaryPath[ordinaryPath.length - 1];
+    const pf = state.history[state.history.length - 1];
+    const of_ = ordinaryPath[ordinaryPath.length - 1];
 
-    // Calculate total "life score" (average of 4 stats minus stress)
-    const playerScore = Math.round(
-        (playerFinal.stats.money + playerFinal.stats.relationships +
-         playerFinal.stats.energy + playerFinal.stats.fulfillment) / 4 - playerFinal.stress * 0.5
-    );
-    const ordinaryScore = Math.round(
-        (ordinaryFinal.stats.money + ordinaryFinal.stats.relationships +
-         ordinaryFinal.stats.energy + ordinaryFinal.stats.fulfillment) / 4 - ordinaryFinal.stress * 0.5
-    );
+    const pScore = Math.round((pf.stats.money + pf.stats.relationships + pf.stats.energy + pf.stats.fulfillment) / 4 - pf.stress * 0.5);
+    const oScore = Math.round((of_.stats.money + of_.stats.relationships + of_.stats.energy + of_.stats.fulfillment) / 4 - of_.stress * 0.5);
 
-    const container = document.getElementById('game-content');
-    container.innerHTML = `
+    c.innerHTML = `
         <div class="endgame-screen">
             <p class="phase-label">The Reckoning</p>
-            <h2>${state.gameOverReason}</h2>
+            <h2 class="endgame-reason">${state.gameOverReason}</h2>
 
             <div class="comparison">
                 <div class="comparison-col">
                     <h3>Your "Dream" Life</h3>
-                    <p class="comparison-subtitle">${state.idealLife.name}</p>
+                    <p class="comparison-subtitle">${state.idealLife.icon} ${state.idealLife.name}</p>
                     <div class="final-stats">
-                        <div class="final-stat">💰 <strong>${playerFinal.stats.money}</strong></div>
-                        <div class="final-stat">❤️ <strong>${playerFinal.stats.relationships}</strong></div>
-                        <div class="final-stat">🧠 <strong>${playerFinal.stats.energy}</strong></div>
-                        <div class="final-stat">🌟 <strong>${playerFinal.stats.fulfillment}</strong></div>
-                        <div class="final-stat stress-stat">🌪️ <strong>${playerFinal.stress}</strong></div>
+                        <div class="final-stat">💰 Money <strong>${pf.stats.money}</strong></div>
+                        <div class="final-stat">❤️ Bonds <strong>${pf.stats.relationships}</strong></div>
+                        <div class="final-stat">🧠 Energy <strong>${pf.stats.energy}</strong></div>
+                        <div class="final-stat">🌟 Purpose <strong>${pf.stats.fulfillment}</strong></div>
+                        <div class="final-stat stress-stat">🌪️ Stress <strong>${pf.stress}</strong></div>
                     </div>
-                    <div class="life-score bad">Life Balance: ${playerScore}</div>
+                    <div class="life-score bad">Balance: ${pScore}</div>
                 </div>
-
-                <div class="comparison-divider">
-                    <span>VS</span>
-                </div>
-
+                <div class="comparison-divider"><span>VS</span></div>
                 <div class="comparison-col">
                     <h3>Your Original Script</h3>
                     <p class="comparison-subtitle">${state.profile.name} — played steadily</p>
                     <div class="final-stats">
-                        <div class="final-stat">💰 <strong>${ordinaryFinal.stats.money}</strong></div>
-                        <div class="final-stat">❤️ <strong>${ordinaryFinal.stats.relationships}</strong></div>
-                        <div class="final-stat">🧠 <strong>${ordinaryFinal.stats.energy}</strong></div>
-                        <div class="final-stat">🌟 <strong>${ordinaryFinal.stats.fulfillment}</strong></div>
-                        <div class="final-stat stress-stat">🌪️ <strong>${ordinaryFinal.stress}</strong></div>
+                        <div class="final-stat">💰 Money <strong>${of_.stats.money}</strong></div>
+                        <div class="final-stat">❤️ Bonds <strong>${of_.stats.relationships}</strong></div>
+                        <div class="final-stat">🧠 Energy <strong>${of_.stats.energy}</strong></div>
+                        <div class="final-stat">🌟 Purpose <strong>${of_.stats.fulfillment}</strong></div>
+                        <div class="final-stat stress-stat">🌪️ Stress <strong>${of_.stress}</strong></div>
                     </div>
-                    <div class="life-score good">Life Balance: ${ordinaryScore}</div>
+                    <div class="life-score good">Balance: ${oScore}</div>
                 </div>
             </div>
 
             <div class="endgame-message">
-                <blockquote>"You spent your whole life chasing someone else's script. But the original — your original — had everything you needed. Not because it was perfect. Because it was <em>yours</em>."</blockquote>
+                <blockquote>"You spent years chasing someone else's script. But the original — <em>your</em> original — had everything you needed. Not because it was perfect. Because it was <em>yours</em>. The cracks were yours. The growth was yours. The quiet victories no one applauded were <em>yours</em>."</blockquote>
                 <p class="endgame-zen">不要美化另一条路。学好用好自己的剧本。<br><span>Don't romanticise the road not taken. Learn to play your own hand.</span></p>
             </div>
 
             <div class="endgame-actions">
-                <button class="btn btn-primary" onclick="restartGame()">Play Again</button>
-                <a href="../zen-mode/" class="btn btn-secondary">Return to Zen Mode</a>
+                <button class="btn btn-primary" onclick="restartGame()">Play Again (Different Life)</button>
+                <a href="../" class="btn btn-secondary">Return to Zen Mode</a>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
-function restartGame() {
-    state.phase = 'intro';
-    state.profile = null;
-    state.idealLife = null;
-    state.turn = 0;
-    state.stats = { money: 0, relationships: 0, energy: 0, fulfillment: 0 };
-    state.stress = 0;
-    state.history = [];
-    state.gameOver = false;
-    document.body.style.filter = '';
-    renderIntro();
+// =========================================
+// Helpers
+// =========================================
+function renderMiniBars(stats) {
+    return ['money', 'relationships', 'energy', 'fulfillment'].map((k, i) => {
+        const icons = ['💰', '❤️', '🧠', '🌟'];
+        return `<div class="mini-bar"><span class="mini-icon">${icons[i]}</span><div class="mini-fill" style="width:${stats[k]}%"></div></div>`;
+    }).join('');
 }
 
-function renderIntro() {
-    const container = document.getElementById('game-content');
-    container.innerHTML = `
-        <div class="intro-screen">
-            <p class="intro-epigraph">"不要美化另一条路。"</p>
-            <h1 class="intro-title">The Life<br>Script</h1>
-            <p class="intro-sub">An interactive experience about the life you have<br>and the life you think you want.</p>
-            <p class="intro-desc">You'll start with an ordinary life. Then you'll rewrite it into a dream. Then you'll discover why the dream breaks — and why the ordinary was enough all along.</p>
-            <button class="btn btn-primary" onclick="state.phase='setup'; renderSetup();">Begin</button>
-            <p class="intro-credit">By <a href="../zen-mode/">JSU</a> · Zen Mode</p>
-        </div>
-    `;
+function renderStatBar(icon, label, value) {
+    const color = value < 20 ? '#ff6b6b' : '#00ffcc';
+    return `<div class="stat-bar-item">
+        <span class="stat-icon">${icon}</span>
+        <div class="stat-track"><div class="stat-fill" style="width:${value}%;background:${color}"></div></div>
+        <span class="stat-val">${value}</span>
+    </div>`;
 }
 
-// Boot
-document.addEventListener('DOMContentLoaded', renderIntro);
+document.addEventListener('DOMContentLoaded', render);
