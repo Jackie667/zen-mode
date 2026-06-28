@@ -3,141 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The I Ching Game — Zen Mode</title>
-    <meta name="description" content="An interactive I Ching experience — cast your reading, explore life's phases, and discover what the ancient hexagrams reveal about the patterns you're already living.">
+    <title>The Life Script — Zen Mode</title>
+    <meta name="description" content="An interactive life simulation. Choose an ordinary life, rewrite it into a dream, then watch it unravel. Don't romanticise the road not taken.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="grain"></div>
-
-    <!-- Back to main site -->
     <a href="../" class="back-link">← Zen Mode</a>
-
-    <!-- ====== SCREEN 1: INTRO ====== -->
-    <div class="screen screen-intro active" id="screen-intro">
-        <div class="intro-content">
-            <p class="intro-epigraph">"退一步，看全局。"</p>
-            <h1 class="intro-title">The I Ching<br>Game</h1>
-            <p class="intro-sub">An interactive experience based on the Book of Changes.<br>Cast your reading. Explore the eight phases. See your life from above.</p>
-            <div class="intro-actions">
-                <button class="btn btn-primary" id="btn-cast">Cast a Reading</button>
-                <button class="btn btn-secondary" id="btn-journey">Explore the Journey</button>
-            </div>
-            <p class="intro-credit">By <a href="../">JSU</a> · Zen Mode</p>
-        </div>
-    </div>
-
-    <!-- ====== SCREEN 2: CASTING ====== -->
-    <div class="screen screen-cast" id="screen-cast">
-        <div class="cast-content">
-            <p class="cast-instruction" id="cast-instruction">Focus on a question in your mind. When ready, tap to cast your first line.</p>
-            <div class="trigram-build" id="trigram-build">
-                <div class="trigram-line-slot" data-index="2"></div>
-                <div class="trigram-line-slot" data-index="1"></div>
-                <div class="trigram-line-slot" data-index="0"></div>
-            </div>
-            <div class="cast-coin-area" id="cast-coin-area">
-                <button class="coin-btn" id="coin-btn">
-                    <span class="coin-face">☯</span>
-                </button>
-                <p class="cast-step" id="cast-step">Line 1 of 3</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ====== SCREEN 3: READING ====== -->
-    <div class="screen screen-reading" id="screen-reading">
-        <div class="reading-content">
-            <div class="reading-header">
-                <div class="reading-trigram-visual" id="reading-trigram-visual"></div>
-                <div class="reading-title-block">
-                    <p class="reading-phase" id="reading-phase"></p>
-                    <h2 class="reading-name" id="reading-name"></h2>
-                    <p class="reading-element" id="reading-element"></p>
-                </div>
-            </div>
-
-            <div class="reading-body">
-                <div class="reading-section">
-                    <h3>The Reading</h3>
-                    <p id="reading-text"></p>
-                </div>
-                <div class="reading-section reading-shadow">
-                    <h3>The Shadow</h3>
-                    <p id="reading-shadow"></p>
-                </div>
-                <div class="reading-section reading-jsu">
-                    <span class="jsu-label">JSU's Note</span>
-                    <p id="reading-jsu"></p>
-                </div>
-                <div class="reading-section reading-question-block">
-                    <p class="reading-question" id="reading-question"></p>
-                </div>
-            </div>
-
-            <div class="reading-actions">
-                <button class="btn btn-secondary" id="btn-recast">Cast Again</button>
-                <button class="btn btn-secondary" id="btn-to-journey">View All Phases</button>
-                <button class="btn btn-ghost" id="btn-back-home">Back to Start</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ====== SCREEN 4: JOURNEY MAP ====== -->
-    <div class="screen screen-journey" id="screen-journey">
-        <div class="journey-content">
-            <h2 class="journey-title">The Eight Phases</h2>
-            <p class="journey-sub">Every life moves through these patterns. Where are you now?</p>
-            <div class="journey-grid" id="journey-grid">
-                <!-- Populated by JS -->
-            </div>
-            <div class="journey-actions">
-                <button class="btn btn-primary" id="btn-journey-cast">Cast a Reading</button>
-                <button class="btn btn-ghost" id="btn-journey-home">Back to Start</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ====== SCREEN 5: PHASE DETAIL (from journey) ====== -->
-    <div class="screen screen-detail" id="screen-detail">
-        <div class="reading-content">
-            <div class="reading-header">
-                <div class="reading-trigram-visual" id="detail-trigram-visual"></div>
-                <div class="reading-title-block">
-                    <p class="reading-phase" id="detail-phase"></p>
-                    <h2 class="reading-name" id="detail-name"></h2>
-                    <p class="reading-element" id="detail-element"></p>
-                </div>
-            </div>
-            <div class="reading-body">
-                <div class="reading-section">
-                    <h3>The Reading</h3>
-                    <p id="detail-text"></p>
-                </div>
-                <div class="reading-section reading-shadow">
-                    <h3>The Shadow</h3>
-                    <p id="detail-shadow"></p>
-                </div>
-                <div class="reading-section reading-jsu">
-                    <span class="jsu-label">JSU's Note</span>
-                    <p id="detail-jsu"></p>
-                </div>
-                <div class="reading-section reading-question-block">
-                    <p class="reading-question" id="detail-question"></p>
-                </div>
-            </div>
-            <div class="reading-actions">
-                <button class="btn btn-secondary" id="btn-detail-back">← All Phases</button>
-                <button class="btn btn-primary" id="btn-detail-cast">Cast My Own</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="trigrams.js"></script>
-    <script src="game.js"></script>
+    <div id="game-content"></div>
+    <script src="data.js"></script>
+    <script src="engine.js"></script>
 </body>
 </html>
