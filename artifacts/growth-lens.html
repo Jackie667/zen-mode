@@ -16,15 +16,36 @@
     <!-- Hero -->
     <section class="hero">
         <p class="tag">造增长 · Growth Lens</p>
-        <div class="cube-scene">
-            <div class="cube">
-                <div class="cube-face front"></div>
-                <div class="cube-face back"></div>
-                <div class="cube-face right"></div>
-                <div class="cube-face left"></div>
-                <div class="cube-face top"></div>
-                <div class="cube-face bottom"></div>
-            </div>
+        <div class="growth-flow">
+            <svg class="flow-svg" viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+                <!-- Connection lines -->
+                <line x1="40" y1="30" x2="120" y2="30" stroke="rgba(0,255,204,0.15)" stroke-width="1.5"/>
+                <line x1="120" y1="30" x2="200" y2="30" stroke="rgba(0,255,204,0.15)" stroke-width="1.5"/>
+                <line x1="200" y1="30" x2="280" y2="30" stroke="rgba(0,255,204,0.15)" stroke-width="1.5"/>
+                <line x1="280" y1="30" x2="360" y2="30" stroke="rgba(0,255,204,0.15)" stroke-width="1.5"/>
+                <!-- Animated pulse traveling the line -->
+                <circle r="3" fill="#00ffcc" opacity="0.8">
+                    <animateMotion dur="4s" repeatCount="indefinite" path="M40,30 L120,30 L200,30 L280,30 L360,30"/>
+                </circle>
+                <!-- Nodes -->
+                <circle cx="40"  cy="30" r="6" fill="none" stroke="#00ffcc" stroke-width="1.5" class="flow-node" opacity="0.4"/>
+                <circle cx="120" cy="30" r="6" fill="none" stroke="#00ffcc" stroke-width="1.5" class="flow-node" opacity="0.4"/>
+                <circle cx="200" cy="30" r="6" fill="none" stroke="#00ffcc" stroke-width="1.5" class="flow-node" opacity="0.4"/>
+                <circle cx="280" cy="30" r="6" fill="none" stroke="#00ffcc" stroke-width="1.5" class="flow-node" opacity="0.4"/>
+                <circle cx="360" cy="30" r="6" fill="none" stroke="#00ffcc" stroke-width="1.5" class="flow-node" opacity="0.4"/>
+                <!-- Node fills that pulse sequentially -->
+                <circle cx="40"  cy="30" r="4" fill="#00ffcc"><animate attributeName="opacity" values="1;0.15;0.15;0.15;0.15;1" dur="4s" repeatCount="indefinite"/></circle>
+                <circle cx="120" cy="30" r="4" fill="#00ffcc"><animate attributeName="opacity" values="0.15;1;0.15;0.15;0.15;0.15" dur="4s" repeatCount="indefinite"/></circle>
+                <circle cx="200" cy="30" r="4" fill="#00ffcc"><animate attributeName="opacity" values="0.15;0.15;1;0.15;0.15;0.15" dur="4s" repeatCount="indefinite"/></circle>
+                <circle cx="280" cy="30" r="4" fill="#00ffcc"><animate attributeName="opacity" values="0.15;0.15;0.15;1;0.15;0.15" dur="4s" repeatCount="indefinite"/></circle>
+                <circle cx="360" cy="30" r="4" fill="#00ffcc"><animate attributeName="opacity" values="0.15;0.15;0.15;0.15;1;0.15" dur="4s" repeatCount="indefinite"/></circle>
+                <!-- Labels -->
+                <text x="40"  y="52" text-anchor="middle" fill="#888" font-size="7" font-family="Space Grotesk">Brand</text>
+                <text x="120" y="52" text-anchor="middle" fill="#888" font-size="7" font-family="Space Grotesk">UX</text>
+                <text x="200" y="52" text-anchor="middle" fill="#888" font-size="7" font-family="Space Grotesk">SEO</text>
+                <text x="280" y="52" text-anchor="middle" fill="#888" font-size="7" font-family="Space Grotesk">Ads</text>
+                <text x="360" y="52" text-anchor="middle" fill="#888" font-size="7" font-family="Space Grotesk">E-com</text>
+            </svg>
         </div>
         <h1>From Silos to<br>One Growth System</h1>
         <p class="hero-sub">Brand, UX, SEO, marketing and e-commerce used to be separate departments speaking different languages. AI makes them one conversation — with data as the common tongue.</p>

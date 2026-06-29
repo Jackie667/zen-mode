@@ -33,6 +33,17 @@ body {
 /* =========================================
    Hero
 ========================================= */
+/* Growth Flow Diagram */
+.growth-flow {
+    max-width: 400px;
+    margin: 0 auto 30px;
+}
+
+.flow-svg {
+    width: 100%;
+    height: auto;
+}
+
 .hero {
     max-width: 900px; margin: 0 auto; padding: 120px 30px 60px; text-align: center;
 }
