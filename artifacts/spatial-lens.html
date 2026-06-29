@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Lens — Traditional vs AI Workflow | Zen Mode</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="spatial-lens.css">
+</head>
+<body>
+    <div class="grain"></div>
+    <a href="../" class="back-link">← Zen Mode</a>
+
+    <!-- Hero -->
+    <section class="hero">
+        <p class="tag">造空间 · Spatial Lens</p>
+        <h1>How AI Reshapes<br>Architectural Design</h1>
+        <p class="hero-sub">A stage-by-stage comparison of the traditional design workflow vs. the AI-enhanced process — measured by time, quality, and what gets lost (or found) along the way.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number" data-from="15" data-to="5">15</span>
+                <span class="hero-stat-unit">→ 5 weeks</span>
+                <span class="hero-stat-label">Total Timeline</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">67%</span>
+                <span class="hero-stat-label">Time Saved</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">3×</span>
+                <span class="hero-stat-label">More Iterations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Toggle -->
+    <section class="toggle-section">
+        <div class="toggle-bar">
+            <button class="toggle-btn active" data-view="compare" onclick="setView('compare')">Side by Side</button>
+            <button class="toggle-btn" data-view="traditional" onclick="setView('traditional')">Traditional Only</button>
+            <button class="toggle-btn" data-view="ai" onclick="setView('ai')">AI-Enhanced Only</button>
+        </div>
+    </section>
+
+    <!-- Stage 1 -->
+    <section class="stage" id="stage-1">
+        <div class="stage-header">
+            <span class="stage-number">01</span>
+            <div>
+                <h2>Research & Briefing</h2>
+                <p class="stage-question">Understanding the site, the client, and the constraints.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Traditional</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">2–3 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Manual site visits with camera and sketchbook</li>
+                    <li>Local planning authority research (in-person or slow portals)</li>
+                    <li>Precedent studies from architecture books and magazines</li>
+                    <li>Client brief through multiple meetings and revisions</li>
+                    <li>Environmental and zoning data compiled by hand</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Camera</span>
+                    <span class="tool">Tape Measure</span>
+                    <span class="tool">Planning Portal</span>
+                    <span class="tool">Library</span>
+                </div>
+                <p class="col-verdict">Thorough but slow. High dependency on physical access and manual processes.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">AI-Enhanced</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:20%"></div></div>
+                    <span class="time-value">2–3 days</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI-powered site analysis (satellite, terrain, sun path simulation)</li>
+                    <li>Automated planning regulation parsing and compliance check</li>
+                    <li>Visual precedent search with AI image recognition</li>
+                    <li>Client brief structured by AI questionnaire, summarised instantly</li>
+                    <li>Environmental data aggregated from multiple APIs in minutes</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Google Earth + AI</span>
+                    <span class="tool">ChatGPT</span>
+                    <span class="tool">Pinterest AI</span>
+                    <span class="tool">Climate APIs</span>
+                </div>
+                <p class="col-verdict">Same depth, 10× speed. The site visit still matters — but you arrive already knowing the answers.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"The site visit used to be discovery. Now it's confirmation. I arrive knowing the sun angles, the soil type, the neighbour's planning history. What I gain in speed, I invest in asking better questions."</p>
+        </div>
+    </section>
+
+    <!-- Stage 2 -->
+    <section class="stage" id="stage-2">
+        <div class="stage-header">
+            <span class="stage-number">02</span>
+            <div>
+                <h2>Concept Design</h2>
+                <p class="stage-question">Generating ideas, exploring massing, finding the story.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Traditional</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">3–4 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Hand sketches — plan, section, elevation explorations</li>
+                    <li>Physical massing models (foam, cardboard)</li>
+                    <li>2-3 concept options developed in parallel</li>
+                    <li>Internal crits and mentor reviews</li>
+                    <li>Client presentation with printed boards</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Trace Paper</span>
+                    <span class="tool">Foam Cutter</span>
+                    <span class="tool">SketchUp</span>
+                    <span class="tool">InDesign</span>
+                </div>
+                <p class="col-verdict">Deep craft. Each option carries hours of manual labour. You become attached to ideas you can't afford to discard.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">AI-Enhanced</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:30%"></div></div>
+                    <span class="time-value">5–7 days</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI-generated massing options from text/sketch prompts (10+ in an hour)</li>
+                    <li>Rapid style exploration (Midjourney / Stable Diffusion)</li>
+                    <li>Sketch-to-3D conversion for quick spatial testing</li>
+                    <li>8-12 concept directions explored, narrowed to 3</li>
+                    <li>Animated walkthrough generated same-day for client review</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Midjourney</span>
+                    <span class="tool">SketchUp + AI Plugin</span>
+                    <span class="tool">Photoshop AI</span>
+                    <span class="tool">Luma AI</span>
+                </div>
+                <p class="col-verdict">Quantity breeds quality. You explore 4× more options and kill bad ideas faster — before emotional attachment forms.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Hand sketching taught me to think through my hand. AI taught me to think through language. Both are valid — but describing a building in words forces a clarity that drawing sometimes hides."</p>
+        </div>
+    </section>
+
+    <!-- Stage 3 -->
+    <section class="stage" id="stage-3">
+        <div class="stage-header">
+            <span class="stage-number">03</span>
+            <div>
+                <h2>Design Development</h2>
+                <p class="stage-question">Refining details, materials, systems, and coordination.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Traditional</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">4–6 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Detailed CAD/Revit modelling from concept sketches</li>
+                    <li>Manual material research (supplier catalogues, sample requests)</li>
+                    <li>Structural / MEP coordination meetings (weekly)</li>
+                    <li>Cost estimation by quantity surveyor (manual takeoff)</li>
+                    <li>Iterative client feedback loops (slow email chains)</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Revit / ArchiCAD</span>
+                    <span class="tool">Excel</span>
+                    <span class="tool">Email</span>
+                    <span class="tool">Phone</span>
+                </div>
+                <p class="col-verdict">Precision-driven but bottlenecked by coordination. Most time spent waiting for others, not designing.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">AI-Enhanced</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:35%"></div></div>
+                    <span class="time-value">1.5–2 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI-assisted BIM modelling (parametric generation from rules)</li>
+                    <li>Material recommendation engine based on budget + aesthetic + climate</li>
+                    <li>Automated clash detection and resolution suggestions</li>
+                    <li>AI cost estimation in real-time as design changes</li>
+                    <li>Shared digital workspace with instant annotation and AI summaries</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Revit + AI Plugins</span>
+                    <span class="tool">Spacemaker</span>
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Notion AI</span>
+                </div>
+                <p class="col-verdict">Coordination becomes computation. The designer stays in flow instead of chasing consultants.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Design development used to be where creativity went to die — buried in coordination emails. AI freed me to keep designing while the system handles the logistics."</p>
+        </div>
+    </section>
+
+    <!-- Stage 4 -->
+    <section class="stage" id="stage-4">
+        <div class="stage-header">
+            <span class="stage-number">04</span>
+            <div>
+                <h2>Visualisation & Presentation</h2>
+                <p class="stage-question">Communicating the vision — renderings, diagrams, storytelling.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Traditional</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">2–3 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>3D modelling in 3ds Max / Rhino for rendering</li>
+                    <li>V-Ray / Corona render setup (lighting, materials, cameras)</li>
+                    <li>Render farm processing (hours per image)</li>
+                    <li>Photoshop post-production (people, vegetation, atmosphere)</li>
+                    <li>Layout and presentation boards in InDesign</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">3ds Max</span>
+                    <span class="tool">V-Ray</span>
+                    <span class="tool">Photoshop</span>
+                    <span class="tool">InDesign</span>
+                </div>
+                <p class="col-verdict">Beautiful but brittle. One change to the design means re-rendering everything. Clients see the vision too late.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">AI-Enhanced</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:15%"></div></div>
+                    <span class="time-value">1–2 days</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI rendering from SketchUp models or even hand sketches</li>
+                    <li>Real-time style transfer (try 5 moods in 5 minutes)</li>
+                    <li>AI-generated people, context, vegetation — photorealistic</li>
+                    <li>Video walkthroughs generated from still images</li>
+                    <li>Presentation decks auto-generated with AI layout tools</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Midjourney</span>
+                    <span class="tool">Stable Diffusion</span>
+                    <span class="tool">Runway</span>
+                    <span class="tool">Gamma AI</span>
+                </div>
+                <p class="col-verdict">The gap between idea and image shrinks to minutes. Clients see the vision in real-time. Iteration becomes conversation.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"A rendering used to be a promise: 'it will look like this.' AI makes it a question: 'do you want it to look like this, or this, or this?' That shift — from telling to asking — changes the entire client relationship."</p>
+        </div>
+    </section>
+
+    <!-- Stage 5 -->
+    <section class="stage" id="stage-5">
+        <div class="stage-header">
+            <span class="stage-number">05</span>
+            <div>
+                <h2>Documentation & Delivery</h2>
+                <p class="stage-question">Producing the drawings and specs that make it buildable.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Traditional</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">4–6 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Full drawing set production (plans, sections, details)</li>
+                    <li>Specification writing from scratch or adapted templates</li>
+                    <li>Checking, cross-referencing, and quality control</li>
+                    <li>Building regulation submission preparation</li>
+                    <li>Contractor tender package compilation</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Revit</span>
+                    <span class="tool">AutoCAD</span>
+                    <span class="tool">Word</span>
+                    <span class="tool">PDF</span>
+                </div>
+                <p class="col-verdict">The least glamorous phase, but the one where errors cost the most. Manual checking is exhausting and error-prone.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">AI-Enhanced</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:25%"></div></div>
+                    <span class="time-value">1–2 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Auto-generated drawing schedules from BIM model</li>
+                    <li>AI-written specifications with compliance checking</li>
+                    <li>Automated cross-referencing and error detection</li>
+                    <li>Digital building regulation pre-assessment</li>
+                    <li>Smart tender packages with AI-organised documentation</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Revit + AI</span>
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Automated QC</span>
+                    <span class="tool">Digital Submission</span>
+                </div>
+                <p class="col-verdict">Errors get caught before they reach the builder. The boring-but-critical work becomes reliable and fast.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Nobody became an architect to write door schedules. AI handles the documentation so I can stay where I belong — thinking about how people will feel when they walk through the door."</p>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary">
+        <h2>The Full Picture</h2>
+        <div class="summary-timeline">
+            <div class="timeline-row">
+                <span class="timeline-label">Traditional</span>
+                <div class="timeline-bar">
+                    <div class="tl-seg" style="flex:2.5">Research<br><small>2-3w</small></div>
+                    <div class="tl-seg" style="flex:3.5">Concept<br><small>3-4w</small></div>
+                    <div class="tl-seg" style="flex:5">Development<br><small>4-6w</small></div>
+                    <div class="tl-seg" style="flex:2.5">Visualisation<br><small>2-3w</small></div>
+                    <div class="tl-seg" style="flex:5">Documentation<br><small>4-6w</small></div>
+                </div>
+                <span class="timeline-total">15–22 weeks</span>
+            </div>
+            <div class="timeline-row ai-row">
+                <span class="timeline-label">AI-Enhanced</span>
+                <div class="timeline-bar ai-timeline">
+                    <div class="tl-seg" style="flex:0.5">Research<br><small>2-3d</small></div>
+                    <div class="tl-seg" style="flex:1">Concept<br><small>5-7d</small></div>
+                    <div class="tl-seg" style="flex:1.5">Development<br><small>1.5-2w</small></div>
+                    <div class="tl-seg" style="flex:0.3">Viz<br><small>1-2d</small></div>
+                    <div class="tl-seg" style="flex:1.5">Documentation<br><small>1-2w</small></div>
+                </div>
+                <span class="timeline-total">4–6 weeks</span>
+            </div>
+        </div>
+
+        <div class="summary-message">
+            <blockquote>"AI doesn't replace the architect. It replaces the parts of architecture that were never about architecture — the waiting, the formatting, the rendering queue at 2am. What remains is pure design thinking. And that's what I trained for."</blockquote>
+            <p class="summary-attribution">— JSU</p>
+        </div>
+
+        <div class="summary-caveat">
+            <h3>What AI Can't Replace</h3>
+            <ul>
+                <li><strong>The site visit.</strong> Walking a space with your body teaches you things no satellite can.</li>
+                <li><strong>Client empathy.</strong> Understanding what a client means vs. what they say is a human skill.</li>
+                <li><strong>Spatial intuition.</strong> The feeling of a room — light, proportion, atmosphere — is not computable yet.</li>
+                <li><strong>Ethical judgement.</strong> Who gets displaced? What gets demolished? AI optimises. Humans decide what's worth optimising.</li>
+            </ul>
+        </div>
+
+        <div class="summary-actions">
+            <a href="../" class="btn btn-secondary">← Back to Zen Mode</a>
+        </div>
+    </section>
+
+    <script>
+        function setView(view) {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+            document.querySelectorAll('.comparison').forEach(comp => {
+                comp.className = 'comparison';
+                if (view !== 'compare') comp.classList.add('view-' + view);
+            });
+        }
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.stage, .summary').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
