@@ -33,6 +33,46 @@ body {
 /* =========================================
    Hero
 ========================================= */
+/* Balance Scale (Order Lens) */
+.scale-scene {
+    max-width: 200px;
+    margin: 0 auto 30px;
+}
+.scale-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Standpoint block */
+.order-standpoint {
+    max-width: 640px;
+    margin: 0 auto 35px;
+    padding: 20px 28px;
+    border-left: 2px solid rgba(0, 255, 204, 0.2);
+    background: rgba(0, 255, 204, 0.02);
+    border-radius: 0 12px 12px 0;
+    text-align: left;
+}
+.standpoint-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: #bbb;
+    line-height: 1.7;
+}
+
+/* Warning caveat (Order Lens) */
+.warning-caveat {
+    border-color: rgba(255, 170, 51, 0.15);
+    background: rgba(255, 170, 51, 0.02);
+}
+.warning-caveat h3 {
+    color: #ffaa33;
+}
+.warning-caveat li strong {
+    color: #ffaa33;
+}
+
 /* Growth Flow Diagram */
 .growth-flow {
     max-width: 400px;

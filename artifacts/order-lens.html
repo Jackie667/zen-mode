@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Lens — AI for Everyday Legal Clarity | Zen Mode</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="spatial-lens.css">
+</head>
+<body>
+    <div class="grain"></div>
+    <a href="../" class="back-link">← Zen Mode</a>
+
+    <!-- Hero -->
+    <section class="hero">
+        <p class="tag">造秩序 · Order Lens</p>
+
+        <!-- Animated balance scale -->
+        <div class="scale-scene">
+            <svg class="scale-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pivot point -->
+                <circle cx="100" cy="30" r="3" fill="rgba(0,255,204,0.5)"/>
+                <!-- Central pole -->
+                <line x1="100" y1="30" x2="100" y2="100" stroke="rgba(0,255,204,0.25)" stroke-width="1.5"/>
+                <!-- Beam — animated to level -->
+                <g transform-origin="100 30">
+                    <animateTransform attributeName="transform" type="rotate"
+                        values="-12,100,30; -12,100,30; 0,100,30; 0,100,30"
+                        dur="4s" repeatCount="indefinite" keyTimes="0;0.35;0.7;1"
+                        calcMode="spline" keySplines="0 0 1 1;0.25 0 0.25 1;0 0 1 1"/>
+                    <line x1="40" y1="30" x2="160" y2="30" stroke="rgba(0,255,204,0.4)" stroke-width="1.5"/>
+                    <!-- Left pan chain -->
+                    <line x1="55" y1="30" x2="55" y2="55" stroke="rgba(0,255,204,0.3)" stroke-width="1"/>
+                    <!-- Right pan chain -->
+                    <line x1="145" y1="30" x2="145" y2="55" stroke="rgba(0,255,204,0.3)" stroke-width="1"/>
+                    <!-- Left pan -->
+                    <path d="M35,55 Q55,65 75,55" fill="none" stroke="rgba(0,255,204,0.4)" stroke-width="1.5"/>
+                    <!-- Right pan -->
+                    <path d="M125,55 Q145,65 165,55" fill="none" stroke="rgba(0,255,204,0.4)" stroke-width="1.5"/>
+                    <!-- Left pan item (doc icon) -->
+                    <rect x="46" y="47" width="10" height="8" rx="1" fill="none" stroke="rgba(0,255,204,0.5)" stroke-width="1"/>
+                    <line x1="48" y1="50" x2="54" y2="50" stroke="rgba(0,255,204,0.3)" stroke-width="0.7"/>
+                    <line x1="48" y1="52" x2="52" y2="52" stroke="rgba(0,255,204,0.3)" stroke-width="0.7"/>
+                    <!-- Right pan item (checkmark) -->
+                    <path d="M140,51 L143,54 L150,48" fill="none" stroke="rgba(0,255,204,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                </g>
+                <!-- Base -->
+                <line x1="85" y1="100" x2="115" y2="100" stroke="rgba(0,255,204,0.25)" stroke-width="1.5"/>
+                <!-- Balanced label — appears after levelling -->
+                <text x="100" y="115" text-anchor="middle" fill="rgba(0,255,204,0.3)" font-size="7" font-family="Space Grotesk">
+                    <animate attributeName="opacity" values="0;0;0;0.8" dur="4s" repeatCount="indefinite" keyTimes="0;0.6;0.8;1"/>
+                    balanced
+                </text>
+            </svg>
+        </div>
+
+        <h1>Legal Clarity<br>Without a Law Degree</h1>
+        <p class="hero-sub">Legal problems don't care if you're a lawyer. But legal outcomes do favour the prepared. This isn't about replacing your lawyer — it's about not going in blind and paying expert rates to explain the basics.</p>
+
+        <div class="order-standpoint">
+            <p class="standpoint-text">This is for the person dealing with a landlord dispute, a contract they can't understand, a business disagreement, or an employment issue — who needs to act but doesn't know where to start. AI doesn't give legal advice. It gives you the clarity to ask the right questions.</p>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">60–80%</span>
+                <span class="hero-stat-label">Consultation Time Saved</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">3×</span>
+                <span class="hero-stat-label">Better Prepared</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">Clearer</span>
+                <span class="hero-stat-label">Communication</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toggle -->
+    <section class="toggle-section">
+        <div class="toggle-bar">
+            <button class="toggle-btn active" data-view="compare" onclick="setView('compare')">Side by Side</button>
+            <button class="toggle-btn" data-view="traditional" onclick="setView('traditional')">Without AI</button>
+            <button class="toggle-btn" data-view="ai" onclick="setView('ai')">With AI</button>
+        </div>
+    </section>
+
+    <!-- Stage 1 -->
+    <section class="stage" id="stage-1">
+        <div class="stage-header">
+            <span class="stage-number">01</span>
+            <div>
+                <h2>Legal Diagnosis</h2>
+                <p class="stage-question">What kind of problem do I actually have — and who do I need?</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Without AI</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">Days of confusion</span>
+                </div>
+                <ul class="process-list">
+                    <li>Google search returns conflicting, jurisdiction-mixed results</li>
+                    <li>Reddit threads that may or may not apply to your situation</li>
+                    <li>First lawyer consultation spent explaining what happened — at full hourly rate</li>
+                    <li>Realise you have the wrong type of lawyer (employment vs. contract law)</li>
+                    <li>Start again with a new referral — more time, more cost</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Google</span>
+                    <span class="tool">Reddit</span>
+                    <span class="tool">Lawyer Directory</span>
+                    <span class="tool">Trial & Error</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🔍 Confused Google Search</div>
+                    <div class="gallery-slot">😰 First Consultation</div>
+                </div>
+                <p class="col-verdict">The first cost isn't legal fees — it's time wasted understanding what you're even dealing with.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">With AI</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:20%"></div></div>
+                    <span class="time-value">30–60 minutes</span>
+                </div>
+                <ul class="process-list">
+                    <li>Describe the situation in plain language — AI identifies the legal area</li>
+                    <li>AI explains what type of claim/issue this is and what law typically governs it</li>
+                    <li>Clarifies what type of legal professional you actually need</li>
+                    <li>Flags what information to gather before any consultation</li>
+                    <li>Sets realistic expectations about process and outcome range</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Claude / ChatGPT</span>
+                    <span class="tool">DoNotPay</span>
+                    <span class="tool">LexisNexis AI</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🤖 AI Legal Classification</div>
+                    <div class="gallery-slot">📋 Preparation Checklist</div>
+                </div>
+                <p class="col-verdict">Arrive at your first consultation already knowing what it is, what it involves, and what you need to say.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"The most expensive part of a legal problem is often not the lawyer — it's arriving with chaos and paying expert rates to create order. AI creates order first. Then you bring in the expert."</p>
+        </div>
+    </section>
+
+    <!-- Stage 2 -->
+    <section class="stage" id="stage-2">
+        <div class="stage-header">
+            <span class="stage-number">02</span>
+            <div>
+                <h2>Contract & Document Understanding</h2>
+                <p class="stage-question">What does this actually say — and what did I agree to?</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Without AI</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">Sign and hope</span>
+                </div>
+                <ul class="process-list">
+                    <li>Contracts written in legal language designed to protect the other party</li>
+                    <li>Key clauses buried in page 8, paragraph 3c</li>
+                    <li>You sign because everyone else signs — and assumes it's standard</li>
+                    <li>Pay a lawyer to review — often as much as the contract value itself</li>
+                    <li>Discover the problematic clause only when something goes wrong</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Hope</span>
+                    <span class="tool">Expensive Review</span>
+                    <span class="tool">Regret</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">📄 Unread Contract</div>
+                    <div class="gallery-slot">😬 Buried Clause</div>
+                </div>
+                <p class="col-verdict">"Standard contract" is a fiction used to get you to stop reading. There is no standard contract.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">With AI</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:15%"></div></div>
+                    <span class="time-value">15–30 minutes</span>
+                </div>
+                <ul class="process-list">
+                    <li>Paste or upload contract — AI translates every clause into plain English</li>
+                    <li>Flags unusual, one-sided, or potentially risky terms</li>
+                    <li>Highlights what your key obligations are and what you're giving up</li>
+                    <li>Identifies missing clauses that should be there (exit rights, dispute resolution)</li>
+                    <li>Generates a list of questions to raise before signing</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Spellbook</span>
+                    <span class="tool">Kira Systems</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🔍 AI Contract Analysis</div>
+                    <div class="gallery-slot">⚠️ Risk Flags Highlighted</div>
+                </div>
+                <p class="col-verdict">You now understand what you're signing. You raise the right concerns before they become problems — or before you pay someone else to read what you should have read.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"A contract is a spatial design problem — everything is connected, and changing one wall affects the whole structure. AI gives you the floor plan. You still need an architect for the complex builds. But at least you can now read the drawing."</p>
+        </div>
+    </section>
+
+    <!-- Stage 3 -->
+    <section class="stage" id="stage-3">
+        <div class="stage-header">
+            <span class="stage-number">03</span>
+            <div>
+                <h2>Case Preparation</h2>
+                <p class="stage-question">How do I organise what happened so a lawyer can actually help me?</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Without AI</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">Weeks of stress</span>
+                </div>
+                <ul class="process-list">
+                    <li>Scrambling to find all relevant documents, emails, messages</li>
+                    <li>No clear narrative of what happened and when</li>
+                    <li>Bring a box of papers to the lawyer — pay them to sort it</li>
+                    <li>Forget key dates and details when recounting the situation</li>
+                    <li>Lawyer spends billable hours asking you to clarify basic chronology</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Email Inbox</span>
+                    <span class="tool">Paper Box</span>
+                    <span class="tool">Memory</span>
+                    <span class="tool">Panic</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">📦 Document Chaos</div>
+                    <div class="gallery-slot">🕰️ Unclear Timeline</div>
+                </div>
+                <p class="col-verdict">You pay your lawyer to do the work of a well-prepared client. That's the most expensive way to tell your story.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">With AI</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:25%"></div></div>
+                    <span class="time-value">1–2 evenings</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI prompts you to recall all relevant events in sequence</li>
+                    <li>Builds a structured chronological timeline automatically</li>
+                    <li>Identifies what documents, communications, and evidence matter</li>
+                    <li>Drafts a clear one-page summary the lawyer can read in 5 minutes</li>
+                    <li>Generates specific questions to ask at the consultation</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Notion AI</span>
+                    <span class="tool">Google Docs</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">📅 AI-Built Timeline</div>
+                    <div class="gallery-slot">📋 One-Page Case Summary</div>
+                </div>
+                <p class="col-verdict">Your lawyer spends consultation time on strategy — not on finding out what year the lease started. That's the difference between £500 and £2,000 of advice.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"A lawyer is a storyteller in a specific language. Your job is to give them the best raw material. AI helps you write the draft so they can do the important edit — the legal argument."</p>
+        </div>
+    </section>
+
+    <!-- Stage 4 -->
+    <section class="stage" id="stage-4">
+        <div class="stage-header">
+            <span class="stage-number">04</span>
+            <div>
+                <h2>Evidence Organisation</h2>
+                <p class="stage-question">What do I have, what's missing, and what actually matters legally?</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Without AI</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">Scattered & incomplete</span>
+                </div>
+                <ul class="process-list">
+                    <li>Screenshots in camera roll with no system</li>
+                    <li>Emails buried across multiple accounts</li>
+                    <li>Unsure what counts as "evidence" vs. what's irrelevant noise</li>
+                    <li>Strong evidence discovered too late — after positions have hardened</li>
+                    <li>Evidence stored on personal devices without proper backup</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">iPhone Camera Roll</span>
+                    <span class="tool">Gmail</span>
+                    <span class="tool">WhatsApp</span>
+                    <span class="tool">Memory</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">📱 Scattered Screenshots</div>
+                    <div class="gallery-slot">📧 Buried Emails</div>
+                </div>
+                <p class="col-verdict">You often have more evidence than you realise — it's just unrecognised and disorganised. The key piece is hiding in plain sight.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">With AI</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:20%"></div></div>
+                    <span class="time-value">A few hours</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI categorises your documents: contracts, communications, financial records, photographs</li>
+                    <li>Identifies which evidence is likely legally relevant to your specific claim</li>
+                    <li>Spots gaps: "You mention a verbal agreement on X date — do you have any record?"</li>
+                    <li>Suggests how to preserve digital evidence (timestamps, metadata, screenshots)</li>
+                    <li>Helps you understand what to stop creating (things that could hurt your case)</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Google Drive + AI</span>
+                    <span class="tool">Otter.ai</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🗂️ AI Evidence Index</div>
+                    <div class="gallery-slot">✅ What Matters / What Doesn't</div>
+                </div>
+                <p class="col-verdict">You walk into the lawyer knowing your strongest evidence, your weakest points, and what you still need to find. That changes the entire strategy conversation.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Evidence is just data with context. AI is very good at finding context in data. The human question is always: what story does this tell, and is it the right story to tell right now?"</p>
+        </div>
+    </section>
+
+    <!-- Stage 5 -->
+    <section class="stage" id="stage-5">
+        <div class="stage-header">
+            <span class="stage-number">05</span>
+            <div>
+                <h2>Lawyer Communication & Ongoing Management</h2>
+                <p class="stage-question">How do I stay in control when I don't speak the language?</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Without AI</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">Passive, expensive, slow</span>
+                </div>
+                <ul class="process-list">
+                    <li>Lawyer sends letters full of legal terminology you don't understand</li>
+                    <li>You nod and trust — or call to ask questions (more billable hours)</li>
+                    <li>Can't evaluate whether the advice is good or whether alternatives exist</li>
+                    <li>Settle or capitulate because you don't know if the fight is winnable</li>
+                    <li>Follow-up questions feel stupid — so you don't ask them</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Email</span>
+                    <span class="tool">Phone (billing)</span>
+                    <span class="tool">Trust</span>
+                    <span class="tool">Guesswork</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">📨 Confusing Legal Letter</div>
+                    <div class="gallery-slot">💸 Billable Clarification Call</div>
+                </div>
+                <p class="col-verdict">The power imbalance between lawyer and client often comes down to language. You pay for expertise but can't evaluate it.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">With AI</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:25%"></div></div>
+                    <span class="time-value">Informed & in control</span>
+                </div>
+                <ul class="process-list">
+                    <li>AI translates legal correspondence into plain language instantly</li>
+                    <li>Helps you draft clear, precise questions to send via email (not phone)</li>
+                    <li>Explains what options your lawyer is suggesting — and what alternatives exist</li>
+                    <li>Tracks what's been agreed, what's outstanding, and what deadlines matter</li>
+                    <li>Helps you write a professional response to the other party without lawyer cost</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Claude / GPT</span>
+                    <span class="tool">Notion AI</span>
+                    <span class="tool">Email Templates</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🧠 AI Translation Layer</div>
+                    <div class="gallery-slot">📊 Case Tracker</div>
+                </div>
+                <p class="col-verdict">You become an informed client. You ask better questions. You make better decisions. You know when to settle and when to push. The power balance shifts — because you speak the language now.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"The best lawyers I've worked alongside say the same thing: the clients who get the best outcomes are the ones who understand what's happening. AI doesn't make you a lawyer. It makes you the client every good lawyer wants to work with."</p>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary">
+        <h2>The Full Picture</h2>
+        <div class="summary-timeline">
+            <div class="timeline-row">
+                <span class="timeline-label">Without AI</span>
+                <div class="timeline-bar">
+                    <div class="tl-seg" style="flex:3">Diagnosis<br><small>Days</small></div>
+                    <div class="tl-seg" style="flex:2">Contracts<br><small>Hope</small></div>
+                    <div class="tl-seg" style="flex:4">Prep<br><small>Weeks</small></div>
+                    <div class="tl-seg" style="flex:3">Evidence<br><small>Scattered</small></div>
+                    <div class="tl-seg" style="flex:4">Comms<br><small>Passive</small></div>
+                </div>
+                <span class="timeline-total">Expensive, slow, disempowered</span>
+            </div>
+            <div class="timeline-row ai-row">
+                <span class="timeline-label">With AI</span>
+                <div class="timeline-bar ai-timeline">
+                    <div class="tl-seg" style="flex:1">Diagnosis<br><small>1 hour</small></div>
+                    <div class="tl-seg" style="flex:0.8">Contracts<br><small>30 min</small></div>
+                    <div class="tl-seg" style="flex:1.5">Prep<br><small>2 evenings</small></div>
+                    <div class="tl-seg" style="flex:1">Evidence<br><small>Hours</small></div>
+                    <div class="tl-seg" style="flex:1.2">Comms<br><small>Informed</small></div>
+                </div>
+                <span class="timeline-total">Prepared, efficient, in control</span>
+            </div>
+        </div>
+
+        <div class="summary-message">
+            <blockquote>"Legal systems are designed by lawyers for lawyers. That doesn't mean non-lawyers can't navigate them — it means non-lawyers need a translation layer. AI is that layer. It doesn't change the law. It changes your relationship to it."</blockquote>
+            <p class="summary-attribution">— JSU</p>
+        </div>
+
+        <!-- Important Caveats -->
+        <div class="summary-caveat warning-caveat">
+            <h3>⚠️ Important Limitations — Read This</h3>
+            <ul>
+                <li><strong>AI cannot give legal advice.</strong> It can explain, organise, and clarify — but it cannot tell you what to do in your specific legal situation. Only a qualified lawyer can do that.</li>
+                <li><strong>Jurisdiction is everything.</strong> Law varies by country, region, and contract type. Always verify that any AI output applies to your specific jurisdiction.</li>
+                <li><strong>Don't use AI to generate legal documents without review.</strong> An AI-drafted contract may look correct and be legally hollow. Have a lawyer review before you sign or send.</li>
+                <li><strong>Confidentiality matters.</strong> Don't share sensitive case details with public AI tools. Use enterprise-grade tools with privacy protections, or anonymise key details.</li>
+                <li><strong>Complex matters need real lawyers.</strong> Criminal charges, immigration, high-value disputes, family law — these are not areas where AI preparation replaces professional representation.</li>
+            </ul>
+        </div>
+
+        <div class="summary-actions">
+            <a href="../" class="btn btn-secondary">← Back to Zen Mode</a>
+        </div>
+    </section>
+
+    <script>
+        function setView(view) {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+            document.querySelectorAll('.comparison').forEach(comp => {
+                comp.className = 'comparison';
+                if (view !== 'compare') comp.classList.add('view-' + view);
+            });
+        }
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.stage, .summary').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
