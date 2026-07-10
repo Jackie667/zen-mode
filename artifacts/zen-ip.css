@@ -30,29 +30,6 @@
     opacity: 0.85;
 }
 
-.orbit-ring {
-    position: absolute; inset: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(0,255,204,0.1);
-    animation: orbit-spin 8s linear infinite;
-}
-
-.orbit-item {
-    position: absolute;
-    font-size: 1rem;
-    width: 24px; height: 24px;
-    display: flex; align-items: center; justify-content: center;
-    top: 50%; left: 50%;
-    transform:
-        rotate(var(--angle))
-        translateX(65px)
-        rotate(calc(-1 * var(--angle)));
-}
-
-@keyframes orbit-spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
 
 /* IP Origin */
 .ip-origin {
