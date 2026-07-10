@@ -1,0 +1,209 @@
+/* =========================================
+   Zen IP — Additional Styles
+========================================= */
+
+/* Hero orbit animation */
+.ip-hero { padding-bottom: 40px; }
+
+.ip-orbit {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 30px;
+}
+
+.orbit-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,255,204,0.04);
+    border: 1px solid rgba(0,255,204,0.1);
+}
+
+.orbit-avatar {
+    width: 55px; height: 55px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    opacity: 0.85;
+}
+
+.orbit-ring {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0,255,204,0.1);
+    animation: orbit-spin 8s linear infinite;
+}
+
+.orbit-item {
+    position: absolute;
+    font-size: 1rem;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    top: 50%; left: 50%;
+    transform:
+        rotate(var(--angle))
+        translateX(65px)
+        rotate(calc(-1 * var(--angle)));
+}
+
+@keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* IP Origin */
+.ip-origin {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 30px 50px;
+}
+.origin-inner {
+    background: rgba(21,21,26,0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 24px; padding: 40px;
+}
+.origin-title { font-size: 1.8rem; color: #fff; margin-bottom: 15px; }
+.origin-text { font-size: 0.95rem; color: #bbb; line-height: 1.8; }
+
+/* Product Categories */
+.product-category {
+    max-width: 900px; margin: 0 auto;
+    padding: 10px 30px 50px;
+}
+
+.category-header { margin-bottom: 30px; }
+.category-badge {
+    display: inline-block;
+    font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    color: #00ffcc; border: 1px solid rgba(0,255,204,0.2);
+    padding: 4px 14px; border-radius: 50px; margin-bottom: 12px;
+}
+.category-header h2 { font-size: 1.8rem; color: #fff; margin-bottom: 6px; }
+.category-sub { color: #888; font-size: 0.9rem; font-style: italic; }
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.product-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product-card {
+    background: rgba(21,21,26,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px; overflow: hidden;
+    transition: all 0.3s ease;
+}
+.product-card:hover {
+    border-color: rgba(0,255,204,0.2);
+    transform: translateY(-4px);
+}
+
+/* Mockup area */
+.product-mockup {
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.product-mockup .gallery-slot {
+    width: 100%; height: 100%;
+    font-size: 0.7rem; color: #555;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    border: 1px dashed rgba(255,255,255,0.07);
+    border-radius: 10px;
+}
+
+/* Colour-coded mockup backgrounds */
+.mockup-sticker  { background: rgba(100,200,100,0.04); }
+.mockup-wallpaper { background: rgba(100,100,200,0.04); }
+.mockup-mug      { background: rgba(150,100,50,0.04); }
+.mockup-badge    { background: rgba(200,150,50,0.04); }
+.mockup-card     { background: rgba(200,200,200,0.04); }
+.mockup-tote     { background: rgba(200,180,100,0.04); }
+.mockup-notebook { background: rgba(100,150,200,0.04); }
+.mockup-empty    {
+    background: rgba(255,255,255,0.01);
+    border: 1px dashed rgba(255,255,255,0.08) !important;
+    display: flex; align-items: center; justify-content: center;
+}
+.suggest-icon {
+    font-size: 2rem; color: rgba(0,255,204,0.2);
+}
+
+.product-info { padding: 20px; }
+.product-info h3 { font-size: 1rem; color: #fff; margin-bottom: 2px; }
+.product-en { font-size: 0.75rem; color: #666; margin-bottom: 10px; letter-spacing: 1px; }
+.product-desc { font-size: 0.82rem; color: #bbb; line-height: 1.55; margin-bottom: 14px; }
+
+.product-status {
+    display: inline-block;
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 50px;
+}
+.product-status.coming {
+    color: #888; border: 1px solid #333;
+}
+.product-status.suggest {
+    color: #00ffcc; border: 1px solid rgba(0,255,204,0.2);
+    text-decoration: none; transition: all 0.3s;
+}
+.product-status.suggest:hover {
+    background: rgba(0,255,204,0.08);
+}
+
+/* Suggest card */
+.product-card-suggest { opacity: 0.7; }
+.product-card-suggest:hover { opacity: 1; }
+
+/* IP Philosophy */
+.ip-philosophy {
+    max-width: 700px; margin: 10px auto 50px;
+    padding: 0 30px;
+    text-align: center;
+}
+.philosophy-inner {
+    padding: 35px;
+    border: 1px dashed rgba(0,255,204,0.12);
+    border-radius: 20px;
+    background: rgba(0,255,204,0.02);
+}
+.ip-philosophy blockquote {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 1rem; color: #ccc; line-height: 1.8; margin-bottom: 12px;
+}
+.philosophy-attr { font-size: 0.8rem; color: #00ffcc; opacity: 0.5; }
+
+/* Notify */
+.ip-notify {
+    max-width: 500px; margin: 0 auto 20px;
+    padding: 0 30px; text-align: center;
+}
+.notify-inner {
+    background: rgba(21,21,26,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 24px; padding: 35px;
+}
+.notify-inner h2 { font-size: 1.4rem; color: #fff; margin-bottom: 10px; }
+.notify-inner p { font-size: 0.85rem; color: #888; margin-bottom: 22px; line-height: 1.6; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-grid, .product-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .origin-inner { padding: 25px; }
+    .product-category { padding: 10px 16px 40px; }
+    .ip-origin { padding: 0 16px 40px; }
+    .ip-orbit { width: 110px; height: 110px; }
+    .orbit-center { width: 55px; height: 55px; }
+    .orbit-avatar { width: 44px; height: 44px; }
+    .orbit-item { font-size: 0.8rem; transform: rotate(var(--angle)) translateX(50px) rotate(calc(-1 * var(--angle))); }
+}
