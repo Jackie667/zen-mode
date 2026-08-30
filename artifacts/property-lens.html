@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Lens — From Groundbreaking to Full Occupancy | Zen Mode</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="spatial-lens.css">
+</head>
+<body>
+    <div class="grain"></div>
+    <a href="../" class="back-link">← Zen Mode</a>
+
+    <!-- Hero -->
+    <section class="hero">
+        <p class="tag">造空间 × 造增长 · Property Lens</p>
+
+        <!-- Animated building — windows fill up in sequence -->
+        <div class="building-scene">
+            <svg class="building-svg" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+                <rect x="25" y="15" width="90" height="140" rx="3" fill="none" stroke="rgba(0,255,204,0.3)" stroke-width="1.5"/>
+                <rect x="58" y="128" width="24" height="27" rx="1" fill="none" stroke="rgba(0,255,204,0.25)" stroke-width="1"/>
+                <!-- window outlines -->
+                <g fill="none" stroke="rgba(0,255,204,0.2)" stroke-width="1">
+                    <rect x="38" y="30" width="14" height="14" rx="1"/>
+                    <rect x="63" y="30" width="14" height="14" rx="1"/>
+                    <rect x="88" y="30" width="14" height="14" rx="1"/>
+                    <rect x="38" y="52" width="14" height="14" rx="1"/>
+                    <rect x="63" y="52" width="14" height="14" rx="1"/>
+                    <rect x="88" y="52" width="14" height="14" rx="1"/>
+                    <rect x="38" y="74" width="14" height="14" rx="1"/>
+                    <rect x="63" y="74" width="14" height="14" rx="1"/>
+                    <rect x="88" y="74" width="14" height="14" rx="1"/>
+                    <rect x="38" y="96" width="14" height="14" rx="1"/>
+                    <rect x="63" y="96" width="14" height="14" rx="1"/>
+                    <rect x="88" y="96" width="14" height="14" rx="1"/>
+                </g>
+                <!-- windows lighting up sequentially -->
+                <rect x="38" y="30" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="0s" repeatCount="indefinite"/></rect>
+                <rect x="63" y="30" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="0.3s" repeatCount="indefinite"/></rect>
+                <rect x="88" y="30" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="0.6s" repeatCount="indefinite"/></rect>
+                <rect x="38" y="52" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="0.9s" repeatCount="indefinite"/></rect>
+                <rect x="63" y="52" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="1.2s" repeatCount="indefinite"/></rect>
+                <rect x="88" y="52" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="1.5s" repeatCount="indefinite"/></rect>
+                <rect x="38" y="74" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="1.8s" repeatCount="indefinite"/></rect>
+                <rect x="63" y="74" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="2.1s" repeatCount="indefinite"/></rect>
+                <rect x="88" y="74" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="2.4s" repeatCount="indefinite"/></rect>
+                <rect x="38" y="96" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="2.7s" repeatCount="indefinite"/></rect>
+                <rect x="63" y="96" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="3s" repeatCount="indefinite"/></rect>
+                <rect x="88" y="96" width="14" height="14" rx="1" fill="#00ffcc" opacity="0.15"><animate attributeName="opacity" values="0.15;1;0.15" dur="4s" begin="3.3s" repeatCount="indefinite"/></rect>
+            </svg>
+        </div>
+
+        <h1>From Empty Site<br>To Full House</h1>
+        <p class="hero-sub">Two purpose-built student accommodation schemes, two UK cities, one nine-month marketing engine — turning hoardings and empty rooms into a fully tenanted academic year.</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">2</span>
+                <span class="hero-stat-label">Developments Launched</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">91–95%</span>
+                <span class="hero-stat-label">Year-One Occupancy</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">3 Phases</span>
+                <span class="hero-stat-label">One Annual Cycle</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Two Developments -->
+    <section class="stage" id="developments">
+        <div class="stage-header">
+            <span class="stage-number">＋</span>
+            <div>
+                <h2>Two Developments, One Deadline</h2>
+                <p class="stage-question">Unlike most retail, there's no waiting for demand — the academic year starts on a fixed date whether the rooms are let or not.</p>
+            </div>
+        </div>
+        <div class="comparison">
+            <div class="col col-traditional">
+                <span class="col-label">Infinity Coventry</span>
+                <div class="time-block">
+                    <div class="time-bar"><div class="time-fill" style="width:91%"></div></div>
+                    <span class="time-value">91%</span>
+                </div>
+                <ul class="process-list">
+                    <li>Launched: September 2020</li>
+                    <li>City: Coventry, UK</li>
+                    <li>Format: Purpose-built student accommodation (PBSA)</li>
+                </ul>
+                <p class="col-verdict">A new-build scheme entering an already competitive Coventry market — awareness had to be built from zero, on a first-year timeline.</p>
+            </div>
+            <div class="col col-ai">
+                <span class="col-label">Bailey Street Sheffield</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:95%"></div></div>
+                    <span class="time-value">95%</span>
+                </div>
+                <ul class="process-list">
+                    <li>Launched: September 2019</li>
+                    <li>City: Sheffield, UK</li>
+                    <li>Format: Purpose-built student accommodation (PBSA)</li>
+                </ul>
+                <p class="col-verdict">A tighter, smaller scheme where the same three-phase playbook, refined a year earlier, had more room for showroom events and referrals to compound.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"In most industries you can wait out a slow quarter. In student housing, September doesn't move for you. Every phase of the plan has to land before the calendar moment it's meant to influence — that's what makes the sequence matter more than any single tactic."</p>
+        </div>
+    </section>
+
+    <!-- Phase 1 -->
+    <section class="stage" id="phase-1">
+        <div class="stage-header">
+            <span class="stage-number">01</span>
+            <div>
+                <h2>Brand Exposure</h2>
+                <p class="stage-question">Nobody enquires about a building they've never heard of.</p>
+            </div>
+        </div>
+        <div class="comparison solo">
+            <div class="col col-ai">
+                <span class="col-label">Jan – Mar</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">12 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Lamppost banner campaign along main student commuter routes and campus approaches</li>
+                    <li>Static billboard placements at high-footfall junctions near university campuses</li>
+                    <li>Local SEO overhaul — Google Business Profile, location landing pages, "student accommodation [city]" keyword targeting</li>
+                    <li>Paid search & social prospecting introducing the building before it opens its doors</li>
+                    <li>Always-on social content building the story of the building — construction updates, amenity reveals, city-life content</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Google Ads</span>
+                    <span class="tool">Meta Ads Manager</span>
+                    <span class="tool">Google Business Profile</span>
+                    <span class="tool">SEMrush</span>
+                    <span class="tool">Out-of-Home</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🪧 Lamppost & Billboard Creative</div>
+                    <div class="gallery-slot">📈 SEO / Paid Reach</div>
+                </div>
+                <p class="col-verdict">Exposure isn't about selling a room yet — it's about making sure the name is already familiar by the time someone starts searching in April.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Out-of-home and SEO look old-fashioned next to a flash sale, but they're doing the unglamorous work that makes every later phase cheaper — you're not introducing the brand and asking for a deposit in the same breath."</p>
+        </div>
+    </section>
+
+    <!-- Phase 2 -->
+    <section class="stage" id="phase-2">
+        <div class="stage-header">
+            <span class="stage-number">02</span>
+            <div>
+                <h2>Consideration & Enquiry</h2>
+                <p class="stage-question">How do you make a room feel real before anyone's signed anything?</p>
+            </div>
+        </div>
+        <div class="comparison solo">
+            <div class="col col-ai">
+                <span class="col-label">Apr – Jun</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">12 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Themed show rooms — fully dressed concept rooms (study-focused, social, minimalist) opened for viewings</li>
+                    <li>"Try Before You Sleep" trial-stay events letting shortlisted prospects stay overnight in the building</li>
+                    <li>Student-ambassador and social content captured live from the showroom and sleepover events</li>
+                    <li>Retargeting campaigns re-engaging Phase 1 website visitors who hadn't yet enquired</li>
+                    <li>Email/SMS nurture sequence moving waitlist sign-ups toward a booked viewing</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Eventbrite</span>
+                    <span class="tool">Instagram / TikTok</span>
+                    <span class="tool">CRM Email Automation</span>
+                    <span class="tool">Meta Retargeting</span>
+                    <span class="tool">WhatsApp Business</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">🛏️ Themed Show Rooms</div>
+                    <div class="gallery-slot">🌙 Try-Before-You-Sleep Event</div>
+                </div>
+                <p class="col-verdict">A floor plan on a website is a promise. A night spent in the room is proof — the sleepover events converted more sceptics than any ad ever did.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Enquiries are a lagging indicator of trust. You can't ad-spend your way past someone's need to actually picture themselves in the room — you have to let them stand in it."</p>
+        </div>
+    </section>
+
+    <!-- Phase 3 -->
+    <section class="stage" id="phase-3">
+        <div class="stage-header">
+            <span class="stage-number">03</span>
+            <div>
+                <h2>Conversion</h2>
+                <p class="stage-question">Clearing season — turning a waitlist into signed tenancies before Move-in Day.</p>
+            </div>
+        </div>
+        <div class="comparison solo">
+            <div class="col col-ai">
+                <span class="col-label">Jul – Sep</span>
+                <div class="time-block">
+                    <div class="time-bar ai-bar"><div class="time-fill" style="width:100%"></div></div>
+                    <span class="time-value">12 weeks</span>
+                </div>
+                <ul class="process-list">
+                    <li>Flash-sale windows with limited-time deposit discounts and early-bird pricing</li>
+                    <li>Live "rooms remaining" counters on the booking site to create urgency</li>
+                    <li>Refer-a-flatmate incentives to convert group bookings in one motion</li>
+                    <li>Direct outreach to the waitlist built across Phases 1–2, plus clearing-season students</li>
+                    <li>Booking-flow optimisation to remove friction between "interested" and "signed"</li>
+                </ul>
+                <div class="tools">
+                    <span class="tool">Flash-Sale Landing Pages</span>
+                    <span class="tool">SMS Blasts</span>
+                    <span class="tool">Referral Program</span>
+                    <span class="tool">Live Chat</span>
+                </div>
+                <div class="col-gallery">
+                    <div class="gallery-slot">⚡ Flash Sale Creative</div>
+                    <div class="gallery-slot">📊 Rooms Remaining Counter</div>
+                </div>
+                <p class="col-verdict">By September, marketing's job isn't to persuade anymore — it's to remove every last piece of friction between a yes and a signature.</p>
+            </div>
+        </div>
+        <div class="insight">
+            <span class="insight-label">JSU's Take</span>
+            <p>"Urgency only works if it's true. A flash sale on a building that's already full reads as desperate; a flash sale on the last dozen rooms before term starts reads as fact. The discount didn't fill the building — the first two phases did. This one just closed it."</p>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary">
+        <h2>The Full Picture</h2>
+        <div class="summary-timeline">
+            <div class="timeline-row ai-row">
+                <span class="timeline-label">Annual Cycle</span>
+                <div class="timeline-bar ai-timeline">
+                    <div class="tl-seg" style="flex:1">Exposure<br><small>Jan–Mar</small></div>
+                    <div class="tl-seg" style="flex:1">Consideration<br><small>Apr–Jun</small></div>
+                    <div class="tl-seg" style="flex:1">Conversion<br><small>Jul–Sep</small></div>
+                </div>
+                <span class="timeline-total">Move-in Day</span>
+            </div>
+        </div>
+
+        <div class="summary-timeline">
+            <div class="timeline-row">
+                <span class="timeline-label">Infinity Coventry</span>
+                <div class="timeline-bar">
+                    <div class="tl-seg" style="flex:91">91%<br><small>Year One</small></div>
+                    <div class="tl-seg" style="flex:9;opacity:0.3">&nbsp;</div>
+                </div>
+                <span class="timeline-total">Coventry</span>
+            </div>
+            <div class="timeline-row ai-row">
+                <span class="timeline-label">Bailey St Sheffield</span>
+                <div class="timeline-bar ai-timeline">
+                    <div class="tl-seg" style="flex:95">95%<br><small>Year One</small></div>
+                    <div class="tl-seg" style="flex:5;opacity:0.3">&nbsp;</div>
+                </div>
+                <span class="timeline-total">Sheffield</span>
+            </div>
+        </div>
+
+        <div class="summary-message">
+            <blockquote>"A building doesn't fill itself just because it's finished. Every phase of a marketing plan has to arrive before the calendar moment it's trying to influence — awareness before search, proof before commitment, urgency before the deadline. Miss the sequence, and September arrives with empty rooms no discount can fix."</blockquote>
+            <p class="summary-attribution">— JSU</p>
+        </div>
+
+        <div class="summary-caveat">
+            <h3>What Marketing Can't Fix</h3>
+            <ul>
+                <li><strong>Location fundamentals.</strong> No campaign compensates for a 40-minute walk to campus with no direct transport link.</li>
+                <li><strong>Price-to-market fit.</strong> If the rent doesn't match what the room offers relative to competitors, urgency tactics just accelerate the discovery of that gap.</li>
+                <li><strong>University partnerships.</strong> Nomination agreements and student-union relationships open a channel no ad budget replicates.</li>
+                <li><strong>Product quality.</strong> The showroom and sleepover events only work if the finished room matches what was staged.</li>
+                <li><strong>Word of mouth.</strong> The tenants who move in during Phase 3 become next year's Phase 1 — the campaign that matters most is the one you don't run.</li>
+            </ul>
+        </div>
+
+        <div class="summary-actions">
+            <a href="../" class="btn btn-secondary">← Back to Zen Mode</a>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.stage, .summary').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

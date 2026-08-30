@@ -864,6 +864,59 @@ body.light-mode .iching-badge { background: #007aff; color: #fff; }
 body.light-mode .iching-symbol { color: #007aff; }
 body.light-mode .fragment-iching h3 { color: #111; }
 
+/* Play the World — life outside the four lenses */
+.fragment-world {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 170, 51, 0.15);
+    background: linear-gradient(135deg, rgba(255, 170, 51, 0.04), rgba(10, 10, 12, 0.6));
+}
+
+.world-badge {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #0a0a0c;
+    background: #ffaa33;
+    padding: 3px 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+
+.world-symbol {
+    font-size: 2.5rem;
+    color: #ffaa33;
+    opacity: 0.5;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.fragment-world h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.fragment-world p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+body.light-mode .fragment-world {
+    border-color: rgba(200, 120, 20, 0.15);
+    background: linear-gradient(135deg, rgba(200, 120, 20, 0.04), rgba(255, 255, 255, 0.6));
+}
+body.light-mode .world-badge { background: #c87814; color: #fff; }
+body.light-mode .world-symbol { color: #c87814; }
+body.light-mode .fragment-world h3 { color: #111; }
+
 /* Koan */
 .fragment-koan {
     display: flex;

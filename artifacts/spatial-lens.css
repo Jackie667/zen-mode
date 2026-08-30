@@ -79,6 +79,23 @@ body {
     margin: 0 auto 30px;
 }
 
+/* Building Scene (Property Lens) */
+.building-scene {
+    max-width: 140px;
+    margin: 0 auto 30px;
+}
+.building-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Single-column phase card (Property Lens) */
+.comparison.solo {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto 25px;
+}
+
 .flow-svg {
     width: 100%;
     height: auto;
