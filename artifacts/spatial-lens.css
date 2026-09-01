@@ -96,6 +96,60 @@ body {
     margin: 0 auto 25px;
 }
 
+/* Brand system showcase (Property Lens) */
+.brand-mark-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px 0;
+}
+
+.brand-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0;
+}
+.brand-swatch {
+    flex: 1;
+    min-width: 90px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.brand-rewrite {
+    margin: 18px 0;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.rewrite-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+}
+.rewrite-label.label-after { color: #00ffcc; opacity: 0.6; }
+.rewrite-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+.rewrite-text:last-child { margin-bottom: 0; }
+.rewrite-before { color: #888; }
+
 .flow-svg {
     width: 100%;
     height: auto;
